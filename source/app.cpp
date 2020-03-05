@@ -1,14 +1,21 @@
-/*
-@author:YashKumarVerma
-@desc:Entry of application
-*/
+/**
+ *@author: YashKumarVerma
+ *@desc: Enter point of application
+ **/
+
 #include<iostream>
+#include"./../includes/parser/parser.h"
+#include"./../includes/rainbow/rainbow.h"
 
 using namespace std;
 
-int main(){
+int main(int argc, char* argv[]){
+	Parser parser(argc, argv);
 
-    
-return 0;
+	
 
+	// dump all data
+	parser.dump();
+
+	return 0;
 }
