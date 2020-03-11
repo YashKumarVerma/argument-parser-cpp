@@ -6,10 +6,27 @@
 
 using namespace std;
 
+class Data{
+	private:
+		string handle;
+		string value;
+	public:
+		// constructors to create an object
+		Data(string, string);
+		// Data(Data &ref);
+
+		// function to return data
+		Data get();	
+
+		// function to display data
+		static void display(Data);
+};
+
 class Parser{
 	private:
 		// store all parameters in vector instead 
 		vector<string> data;
+		vector<Data> processedData;
 		
 		// store the number of arguments
 		int argc;
@@ -17,11 +34,18 @@ class Parser{
 		// store the name of the file
 		string fileName;
 
+		// function to check if valid arguments syntax passed
+		bool validParamType();
+
+		// function to load data from string to array
+		bool loadData();
+
     public:
 		Parser(int, char*[]);
 
 		// function for debug
 		void dump();
+		void dumpProcessed();
 };
 
 #endif

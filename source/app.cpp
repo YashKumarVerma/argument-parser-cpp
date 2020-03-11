@@ -12,10 +12,9 @@ using namespace std;
 int main(int argc, char* argv[]){
 	Parser parser(argc, argv);
 
-	
-
 	// dump all data
 	parser.dump();
-
+	parser.dumpProcessed();
+	
 	return 0;
 }
