@@ -2,6 +2,7 @@
 #define PARSER
 
 #include<string>
+#include<exception>
 #include<vector>
 
 using namespace std;
@@ -13,7 +14,6 @@ class Data{
 	public:
 		// constructors to create an object
 		Data(string, string);
-		// Data(Data &ref);
 
 		// function to return data
 		Data get();	
@@ -35,15 +35,13 @@ class Parser{
 		string fileName;
 
 		// function to check if valid arguments syntax passed
-		bool validParamType();
+		bool checkFormatAndLoad();
 
-		// function to load data from string to array
-		bool loadData();
 
     public:
 		Parser(int, char*[]);
 
-		// function for debug
+		// function for debugging purposes
 		void dump();
 		void dumpProcessed();
 };

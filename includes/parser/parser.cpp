@@ -49,8 +49,9 @@ Parser::Parser(int argc, char* argv[]){
 	// save the file for future referene
 	this->fileName = data[0];
 
-	if(!this->validParamType()){
+	if(!this->checkFormatAndLoad()){
 		cout << "Invalid Parameter Syntax" << endl;
+		
 		exit(1);
 	}
 }
@@ -59,7 +60,7 @@ Parser::Parser(int argc, char* argv[]){
  * @param: none
  * @desc: function to check if valid syntax called
  */
-bool Parser::validParamType(){
+bool Parser::checkFormatAndLoad(){
 	// 0th index is insignificant
 
 	// start checking from 1th index
@@ -84,16 +85,25 @@ bool Parser::validParamType(){
 			}
 		}
 
+		if(equalToLocation == this->data[i].length()){
+			return false;
+		}else{
+			cout << this->data[i].length() << "~" << equalToLocation << endl;
+			
+		}
+
 		// if equal to does not exist in 
 		if(equalToLocation == -1){
 			return false;
 		}
 
+		// create an object to store data into defined class
 		Data temp(
 			this->data[i].substr(2, equalToLocation-2),
 			this->data[i].substr(equalToLocation+1, this->data[i].length())
 		);
 
+		// add data to processed data vector
 		this->processedData.push_back(temp);
 	}
 	return true;
@@ -120,12 +130,4 @@ void Parser::dumpProcessed(){
 		Data::display( this->processedData[i] );
 	}
 
-}
-
-/**
- * @param: none
- * @desc: function to load data from string to array
- */
-bool Parser::loadData(){
-	return true;
 }
