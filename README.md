@@ -17,9 +17,9 @@ a miniature argument parser for c++
 
 ### Sample
 
-- Sample code for demonstration is available in [`app.js`](./../source/app.cpp)
+- Sample code for demonstration is available in [`app.js`](../master/source/app.cpp)
 
-![Sample Code](./docs/api-mock.png)
+![Sample Code](../master/docs/api-mock.png)
 
 ---
 
