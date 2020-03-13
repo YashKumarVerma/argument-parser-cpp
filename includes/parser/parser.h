@@ -13,10 +13,12 @@ class Data{
 		string value;
 	public:
 		// constructors to create an object
+		Data();
 		Data(string, string);
+		Data(const Data &ref);
 
-		// function to return data
-		Data get();	
+		string getHandle();
+		string getValue();
 
 		// function to display data
 		static void display(Data);
@@ -36,10 +38,15 @@ class Parser{
 
 		// function to check if valid arguments syntax passed
 		bool checkFormatAndLoad();
-
-
+		
     public:
 		Parser(int, char*[]);
+
+		// function to check if given handle existed
+		bool has(string);
+
+		// function to return value of handle
+		string val(string);
 
 		// function for debugging purposes
 		void dump();

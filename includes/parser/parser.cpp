@@ -3,6 +3,16 @@
 
 using namespace std;
 
+
+/**
+ * @param: none
+ * @desc: to store data in form of handle and value
+ */
+Data::Data(){
+	this->handle = "";
+	this->value = "";
+}
+
 /**
  * @param: string handle, string value
  * @desc: to store data in form of handle and value
@@ -12,17 +22,25 @@ Data::Data(string handle, string value){
 	this->value = value;
 }
 
-// Data::Data(Data &ref){
-// 	this->handle = ref.handle;
-// 	this->value = ref.value;
-// }
+/**
+ * @param: another object refernece
+ * @desc: to store data in form of handle and value
+ */
+Data::Data(const Data &ref){
+	this->handle = ref.handle;
+	this->value = ref.value;
+}
 
 /**
  * @param: none
- * @desc: function to return values
+ * @desc: getter for handle and value data
  */
-Data Data::get(){
-	return Data(this->handle, this->value);
+string Data::getHandle(){
+	return this->handle;
+}
+
+string Data::getValue(){
+	return this->value;
 }
 
 /**
@@ -85,11 +103,9 @@ bool Parser::checkFormatAndLoad(){
 			}
 		}
 
-		if(equalToLocation == this->data[i].length()){
+		// to handle --user= as invalid
+		if(equalToLocation == this->data[i].length()-1){
 			return false;
-		}else{
-			cout << this->data[i].length() << "~" << equalToLocation << endl;
-			
 		}
 
 		// if equal to does not exist in 
@@ -112,6 +128,7 @@ bool Parser::checkFormatAndLoad(){
 /**
  * @param: none
  * @desc: function to dump all parameters stored
+ * @debug: true
  */
 void Parser::dump(){
 	cout << "Total Parameters : " << this->argc << endl;
@@ -124,10 +141,44 @@ void Parser::dump(){
 /**
  * @param: none
  * @desc: function to dump all processed parameters stored
+ * @debug: true
  */
 void Parser::dumpProcessed(){
 	for(int i=0; i< this->processedData.size(); i++){
 		Data::display( this->processedData[i] );
 	}
 
+}
+
+/**
+ * @param: name of handle(string)
+ * @desc: function to check if given handle data was in the array
+ */
+bool Parser::has(string handle){
+	Data temp;
+	for(int i=0; i<this->processedData.size(); i++){
+		temp = this->processedData[i];
+		if(temp.getHandle() == handle){
+			return true;
+		}
+	}
+	return false;
+} 
+
+/**
+ * @param: name of handle(string)
+ * @desc: this function returns the value of particular handle and empty string if value not exists
+ */
+string Parser::val(string handle){
+	Data temp;
+	for(int i=0; i<this->processedData.size(); i++){
+		temp = this->processedData[i];
+
+		// if handle found, return actual data
+		if(temp.getHandle() == handle){
+			return temp.getValue();
+		// else return a blank string
+		}
+	}
+	return string("");
 }
